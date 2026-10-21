@@ -28,7 +28,7 @@
 *   **Menu tương tác:** Quản lý hệ thống qua bảng menu chọn phím (0-8) ngay trên Terminal.
 *   **Quản lý Tài khoản:** Thêm mới, Xóa, Đổi mật khẩu, xem danh sách tài khoản nhanh chóng.
 *   **Kiểm tra trạng thái (Status Check):** Theo dõi tức thời trạng thái "Bật/Tắt" của các dịch vụ DNS, Postfix và Dovecot.
-
+## 4. Nếu bản Centos của bạn không còn hỗ gói yum thì phần script đã giúp bạn chuyển hướng sang Vault Centos và có thể dùng lệnh yum.
 ---
 
 ## 🛠 Yêu cầu hệ thống (Prerequisites)
