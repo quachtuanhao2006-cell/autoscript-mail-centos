@@ -22,6 +22,37 @@ install_core_mail() {
         echo "Loi: Ten mien khong duoc de trong!"
         return 1
     fi
+    
+    echo "[*] Kiem tra xung dot cong mang (Port Conflict)..."
+    # Quet cac cong 25 (SMTP), 53 (DNS), 80 (HTTP), 110 (POP3), 143 (IMAP)
+    CONFLICT=$(ss -tulpn | grep -E ':(25|53|80|110|143)\b')
+    
+    if [ -n "$CONFLICT" ]; then
+        echo "================================================="
+        echo "⚠️ CANH BAO: Phat hien dich vu dang chiem dung cong!"
+        echo "He thong khong the cai dat Mail Server neu cac cong nay chua mo."
+        echo "Cac tien trinh dang chay ngam hien tai:"
+        
+        # Loc va in ra ten cac tien trinh dang chiem cong de nguoi dung de doc
+        echo "$CONFLICT" | awk '{print " - Port: " $5 " | Tien trinh: " $7}' | sed 's/users:(("//g' | sed 's/".*//g'
+        echo "================================================="
+        
+        read -r -p "Ban co dong y ep dung (Force Stop) chung de tiep tuc khong? (y/n): " ans
+        if [[ "$ans" =~ ^[Yy]$ ]]; then
+            echo "=> Dang don dep cong mang..."
+            systemctl stop nginx httpd sendmail postfix dovecot named 2>/dev/null
+            fuser -k 80/tcp 53/tcp 53/udp 25/tcp 110/tcp 143/tcp >/dev/null 2>&1
+            sleep 2
+            echo "=> Da giai phong cong thanh cong! Bat dau cai dat..."
+        else
+            echo "=> Da huy thao tac cai dat de bao ve he thong hien tai."
+            pause
+            return 1
+        fi
+    else
+        echo "=> Kiem tra cong mang an toan, khong co xung dot."
+    fi
+
 
     echo "[1/5] Tat SELinux va mo cong Tuong lua..."
     setenforce 0 2>/dev/null
