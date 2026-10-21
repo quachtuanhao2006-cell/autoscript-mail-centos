@@ -15,6 +15,20 @@ pause() {
     read -r -p "Nhan Enter de tiep tuc..."
 }
 
+fix_centos_repo() {
+    echo "[*] Kiem tra va sua loi kho ung dung YUM (CentOS 7 EOL)..."
+    # Kiem tra xem file repo con dung duong dan cu hay khong
+    if grep -q "mirror.centos.org" /etc/yum.repos.d/CentOS-Base.repo 2>/dev/null; then
+        sed -i 's/mirrorlist/#mirrorlist/g' /etc/yum.repos.d/CentOS-*
+        sed -i 's|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g' /etc/yum.repos.d/CentOS-*
+        yum clean all >/dev/null 2>&1
+        yum makecache >/dev/null 2>&1
+        echo "=> Da sua loi YUM (chuyen sang kho Vault) thanh cong!"
+    else
+        echo "=> Kho ung dung YUM da duoc cap nhat hoac dang hoat dong tot."
+    fi
+}
+
 install_core_mail() {
     echo "===== CAI DAT LOI MAIL SERVER VA DNS ====="
     read -r -p "Nhap ten mien cua ban (VD: sgu.edu.vn): " DOMAIN
@@ -65,6 +79,7 @@ install_core_mail() {
     firewall-cmd --reload >/dev/null 2>&1
 
     echo "[2/5] Go bo Sendmail, cai dat Postfix, Dovecot va DNS (BIND)..."
+    fix_centos_repo
     yum remove -y sendmail >/dev/null 2>&1
     yum install -y postfix dovecot bind bind-utils epel-release >/dev/null 2>&1
 
@@ -124,6 +139,7 @@ EOF
 install_webmail() {
     echo "===== CAI DAT WEBMAIL (SQUIRRELMAIL) ====="
     echo "[1/2] Cai dat SquirrelMail va Apache..."
+    fix_centos_repo
     yum install -y epel-release >/dev/null 2>&1
     yum install -y squirrelmail httpd >/dev/null 2>&1
     
