@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# AUTO SCRIPT QUAN LY MAIL SERVER (ULTIMATE)
-# He dieu hanh: CentOS 7 (Chuan theo video huong dan)
+# AUTO SCRIPT QUAN LY MAIL SERVER
+# He dieu hanh: CentOS 7
 # Core: Postfix + Dovecot + SquirrelMail + BIND (DNS)
 # Tinh nang: Quan ly dich vu, Doi mat khau, Danh sach tai khoan, Hien thi Domain
 
