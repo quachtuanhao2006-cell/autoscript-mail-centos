@@ -50,7 +50,7 @@ Chạy lần lượt các lệnh sau trên màn hình Terminal của CentOS 7:
 yum install -y wget
 
 # 2. Tải kịch bản từ GitHub về máy ảo (Thay link raw bên dưới bằng link thực tế của bạn)
-wget [https://github.com/quachtuanhao2006-cell/autoscript-mail-centos)
+wget [https://github.com/quachtuanhao2006-cell/autoscript-mail-centos/blob/main/mail.sh](https://github.com/quachtuanhao2006-cell/autoscript-mail-centos/blob/main/mail.sh)
 
 # 3. Cấp quyền thực thi cho file script
 chmod +x mail.sh
