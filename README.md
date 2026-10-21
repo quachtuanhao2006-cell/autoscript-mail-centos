@@ -36,7 +36,6 @@
 ---
 
 ## 🛠 Yêu cầu hệ thống (Prerequisites)
-*   Hệ điều hành: **CentOS 7** (Bản Minimal hoặc GUI đều được).
 *   Quyền thực thi: Bắt buộc đăng nhập bằng quyền **`root`** (dùng lệnh `su -`).
 *   Máy chủ phải có kết nối Internet trong lần chạy đầu tiên để tải các gói cài đặt (`yum`).
 
@@ -51,10 +50,10 @@ Chạy lần lượt các lệnh sau trên màn hình Terminal của CentOS 7:
 yum install -y wget
 
 # 2. Tải kịch bản từ GitHub về máy ảo (Thay link raw bên dưới bằng link thực tế của bạn)
-wget [https://raw.githubusercontent.com/.../mailmanager.sh](https://raw.githubusercontent.com/.../mailmanager.sh)
+wget [https://github.com/quachtuanhao2006-cell/autoscript-mail-centos)
 
 # 3. Cấp quyền thực thi cho file script
-chmod +x mailmanager.sh
+chmod +x mail.sh
 
 # 4. Khởi chạy Menu Quản trị
-./mailmanager.sh
+./mail.sh
