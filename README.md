@@ -1,0 +1,1 @@
+# autoscript-mail-centos
