@@ -44,7 +44,7 @@
 # 1. Tải công cụ wget (nếu chưa có)
 yum install -y wget
 
-# 2. Tải kịch bản từ GitHub về máy ảo (Thay link raw bên dưới bằng link thực tế của bạn)
+# 2. Tải kịch bản từ GitHub về máy ảo
 wget https://raw.githubusercontent.com/quachtuanhao2006-cell/autoscript-mail-centos/main/mail.sh
 
 # 3. Cấp quyền thực thi cho file script
